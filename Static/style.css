@@ -1,0 +1,160 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url(mainnn.jpg);
+    font-size: 120%;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 6em;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 540px;
+    margin: 1em;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.search{
+    display: flex;
+    align-items: center;
+     margin-bottom: 20px;
+    
+}
+.button_1{
+    margin: 0.5em;
+    border-radius: 90%;
+    border: none;
+    height: 4em;
+    width: 4em;
+    background: #7c7c7c2b;
+    color: white;
+
+}
+select {
+    background: #7c7c7c2b;
+    color: white;
+    height: 2.5em;
+    font-size: 1em;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    margin-right: 10px;
+    flex-grow: 1;
+    width: calc(100% - 60px);
+
+
+}
+select {
+    background: #7c7c7c2b; /* Set the background color of the select element */
+    color: white;
+    height: 2.5em;
+    font-size: 1em;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    margin-right: 10px;
+    flex-grow: 1;
+    width: calc(100% - 60px);
+}
+
+/* Change background color of options when select is clicked */
+select:focus option {
+    background: #333; /* Set the background color of options */
+    color: white; /* Set the text color of options */
+}
+select, input[type="date"] {
+    background: #7c7c7c2b;
+    background-color: #7c7c7c2b;
+    color: white;
+    height: 2.5em;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+    margin-right: 10px;
+    flex-grow: 1;
+    
+}
+
+
+button:hover {
+    background: #7c7c7c6b;
+    cursor: pointer;
+    transition: 0.2s;
+}
+  
+  h1.temp {
+    margin: 0;
+    margin-bottom: 0.4em;
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .description {
+    text-transform: capitalize;
+    margin-left: 8px;
+  }
+  
+
+.hidden {
+    display: none;
+}
+
+.weather-data {
+    display: flex;
+    flex-direction: column; /* Change to column */
+    align-items: center;
+    gap: 10px; /* Adjust spacing between elements */
+    color: white; /* Set text color */
+}
+
+.weather-data p {
+    margin: 0; /* Remove default margin */
+    font-size: 1.2em; /* Adjust font size */
+    display: flex; /* Make each paragraph a flex container */
+    align-items: center; /* Align items vertically */
+}
+
+.symbol {
+    font-size: 1.5em;
+    margin-right: 5px; /* Add some space between symbols and text */
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-inline select,
+.form-inline input[type="date"],
+.form-inline button {
+    margin-right: 10px;
+}
+
+p{
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+
+
+}
+.city-name {
+    font-size: 1.5em;
+    color: white;
+    margin: 10px 0;
+    text-align: left;
+    font-weight: bold;
+}

@@ -1,0 +1,174 @@
+[
+    {
+        "id": "db8463380fca6bb5",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4067fed5c6e7d6a8",
+        "type": "serial in",
+        "z": "db8463380fca6bb5",
+        "name": "",
+        "serial": "b8a62e10413feb2b",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "ee0db2e23cc92eba"
+            ]
+        ]
+    },
+    {
+        "id": "ee0db2e23cc92eba",
+        "type": "json",
+        "z": "db8463380fca6bb5",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "a8eeacd6b12639f1"
+            ]
+        ]
+    },
+    {
+        "id": "a8eeacd6b12639f1",
+        "type": "function",
+        "z": "db8463380fca6bb5",
+        "name": "function 1",
+        "func": "var sensor2 = msg.payload.Temp;\nvar sensor3 = msg.payload.Hum;\nvar sensor4 = msg.payload.dist;\nvar sensor5 = msg.payload.led;\n\n\n// Get current datetime\nvar now = new Date();\nvar datetime = now.toISOString(); // Format datetime as ISO string\n\n// Create JSON object\nvar payloadJSON = {\n    datetime: datetime,\n    temperature: sensor2,\n    humidity: sensor3,\n    distance: sensor4,\n    led: sensor5\n};\n\n// Convert JSON object to JSON string\nvar payloadString = JSON.stringify(payloadJSON);\n\nmsg.payload = payloadString;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "3e68109e3cb55af2"
+            ]
+        ]
+    },
+    {
+        "id": "5968de4541992b1f",
+        "type": "debug",
+        "z": "db8463380fca6bb5",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d4d833b98ca4450e",
+        "type": "http request",
+        "z": "db8463380fca6bb5",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.powerbi.com/beta/c7142531-dd68-4a6f-b036-039ec52d6bd1/datasets/60767035-7251-4866-a0cc-64c0550e2a65/rows?experience=power-bi&key=umaGuXRFb%2BOC9XAUrID5g6b%2BzggOpEOWr%2FkBydGtqklBecUNbJ9jIXGrP68cjThJo%2BCeoCT8l4oraTBXKRcLZw%3D%3D",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 970,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e68109e3cb55af2",
+        "type": "json",
+        "z": "db8463380fca6bb5",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 710,
+        "y": 360,
+        "wires": [
+            [
+                "5968de4541992b1f",
+                "d4d833b98ca4450e",
+                "3fa7eee4f669e528"
+            ]
+        ]
+    },
+    {
+        "id": "3fa7eee4f669e528",
+        "type": "function",
+        "z": "db8463380fca6bb5",
+        "name": "function 2",
+        "func": "var sensor2 = msg.payload.temperature;\nvar sensor3 = msg.payload.humidity;\nvar datetime = msg.payload.datetime;\n\n// Construct the SQL query with placeholders for values\nvar query = \"INSERT INTO temp_hum_table (datetime, temperature, humidity) VALUES (\" + datetime + \",\" + sensor2 + \",\" + sensor3 +\");\";\n// Array of values to be inserted into the table\n\nmsg.payload = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 480,
+        "wires": [
+            [
+                "42e109026d6bca0b"
+            ]
+        ]
+    },
+    {
+        "id": "42e109026d6bca0b",
+        "type": "debug",
+        "z": "db8463380fca6bb5",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "b8a62e10413feb2b",
+        "type": "serial-port",
+        "name": "COM5",
+        "serialport": "COM5",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    }
+]
